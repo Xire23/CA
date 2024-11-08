@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSwap - Exchange Eco-Friendly Items</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f0f8f4 !important;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+        }
+        .navbar {
+            z-index: 4;
+        }
+        .clickable-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0);
+            z-index: 2;
+            cursor: pointer;
+        }
+        .container {
+            position: relative;
+            z-index: 3;
+        }
+        .btn {
+            z-index: 3;
+        }
+        .titlesize {
+            font-size:3rem;
+
+        }
+        .p {
+            color:#f0f8f4 ;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partial/navbar') %>
+    <p class="p">a</p>
+    <p class="p">a</p>
+    <p class="p">a</p>
+    <p class="p">a</p>
+    <p class="p">a</p>
+    <p class="p">a</p>
+    <div class="clickable-overlay" onclick="window.location.href = '/main';"></div>
+    <div class="container mt-4 text-center">
+        <h2 class="titlesize">How It Works</h2>
+        <p>List the items you want to exchange, search for items you need, and arrange swaps with other users.</p>
+        <p>Click anywhere else to access the Main Page</p>
+        <a href="/items" class="btn btn-primary">Browse Items</a>
+        <a href="/list" class="btn btn-secondary">List an Item</a>
+    </div>
+</body>
+</html>

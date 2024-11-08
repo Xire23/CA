@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSwap - Browse Items</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f8fcf4 !important;
+        }
+        .item-card {
+            margin-bottom: 20px;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partial/navbar') %>
+    <div class="container mt-4">
+        <h1 class="text-center">Browse Items</h1>
+        <div class="row">
+            <% items.forEach(function(item) { %>
+                <div class="col-md-4">
+                    <div class="card item-card">
+                        <img src="<%= item.image %>" class="card-img-top" alt="<%= item.itemName %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= item.itemName %></h5>
+                            <p class="card-text"><%= item.description %></p>
+                            <p class="card-text"><small class="text-muted">Listed by: <%= item.ownerName %></small></p>
+                            <div class="btn-group">
+                                <a href="/itemdetails/<%= item.itemID %>" class="btn btn-primary">View Details</a>
+                                <% if (user && item.ownerEmail === user.email) { %>
+                                    <a href="/items/edit/<%= item.itemID %>" class="btn btn-secondary">Edit</a>
+                                    <form action="/items/delete/<%= item.itemID %>" method="POST" style="display:inline;" onsubmit="return confirmDelete()">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                <% } else { %>
+                                    <form action="/cart/add/<%= item.itemID %>" method="POST" style="display:inline;">
+                                        <button type="submit" class="btn btn-success">Add to Cart</button>
+                                    </form>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this item? This action cannot be undone.');
+        }
+    </script>
+</body>
+</html>
